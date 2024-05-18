@@ -1,2 +1,2 @@
 # Sorting-Visualizer
-Creates a visual representation of a sorting algorithm using python.
+Creates a visual representation of a sorting algorithm using python using matplotlib and numpy.
