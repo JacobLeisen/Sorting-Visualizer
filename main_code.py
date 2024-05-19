@@ -21,9 +21,12 @@ def bubble_sort(arr):
     plt.show()
 
 
-
+# Make table parameters
 fig, ax = plt.subplots()
 ax.axis("off")
-arr = np.random.randint(1, 100, 20)
+fig.patch.set_facecolor('lightgrey')
+ax.set_facecolor("orange")
+ax.set_title("Bubble Sort")
+arr = np.random.randint(1, 100, 25)
 bubble_sort(arr)
     
