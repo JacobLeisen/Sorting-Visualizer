@@ -29,3 +29,13 @@ ax.set_title("Bubble Sort")
 arr = np.random.randint(1, 100, 25)
 bubble_sort(arr)
     
+
+
+# Add insertion sort
+
+# Add Button to pick which sort
+
+# Add Speed Buttons
+
+# Add Size Buttons
+
