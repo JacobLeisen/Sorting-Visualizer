@@ -47,12 +47,14 @@ fig.patch.set_facecolor('lightgrey')
 ax.set_title("Sort Visualizer")
 
 # Add Button for Bubble Sort
-bubble_button_ax = plt.axes([0.7, 0.03, 0.15, 0.075])
+bubble_button_ax = plt.axes([0.0, 0.03, 0.15, 0.075])
 bubble_button = Button(bubble_button_ax, "Bubble Sort")
 bubble_button.on_clicked(lambda event: sort_button_click(bubble_sort))
 
 # Add Button for Selection Sort
-
+selection_button_ax = plt.axes([0.2, 0.03, 0.15, 0.075])
+selection_button = Button(selection_button_ax, "Selection Sort")
+selection_button.on_clicked(lambda event: sort_button_click(selection_sort))
 
 
 plt.show()
