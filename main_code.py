@@ -59,9 +59,16 @@ def change_size(num):
         current_size_index = num 
         for bar in bars:
             bar.remove()
+
+        bar_width = 0.8  # Adjust as needed
+        spacing = 0.1  # Adjust as needed
+        total_width = bar_width * current_size + spacing * (current_size - 1)
+
         # Recreate the bar plot with the new size
         arr = np.random.randint(1, 100, current_size)
-        bars = ax.bar(range(current_size), arr, align='center')
+        bars = ax.bar(range(current_size), arr, align='center', width=bar_width)
+        ax.set_xlim(-0.5, total_width - 0.5)  # Adjust the x-axis limits to fit all bars
+
         bar_reset()
 
 
@@ -118,10 +125,6 @@ plt.show()
 
 
 # Add insertion sort
-
-
-
-
 
 
 
