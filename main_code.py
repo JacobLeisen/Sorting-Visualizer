@@ -8,14 +8,15 @@ def update_bars(arr, bars):
         plt.pause(0.01)
 
 def bubble_sort(arr):
-    swapped = True
-    while swapped:
+    for i in range(n-1):
         swapped = False
-        for i in range(1, n):
-            if arr[i-1] > arr[i]:
-                arr[i], arr[i-1] = arr[i-1], arr[i]
+        for j in range(1, n-i):
+            if arr[j-1] > arr[j]:
+                arr[j], arr[j-1] = arr[j-1], arr[j]
                 swapped = True
                 update_bars(arr, bars)
+        if not swapped:
+            break
     plt.show()
 
 # Add selection sort
@@ -32,12 +33,14 @@ def selection_sort(arr):
 
 # Make table parameters
 fig, ax = plt.subplots()
-arr = np.random.randint(1, 100, 50)
+arr = np.random.randint(1, 100, 10)
 n = len(arr) 
 bars = ax.bar(range(n), arr, align='center')
 ax.axis("off")
 fig.patch.set_facecolor('lightgrey')
 ax.set_title("Bubble Sort")
+bubble_sort(arr)
+arr = np.random.randint(1, 100, 10)
 selection_sort(arr)
 
 
