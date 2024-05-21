@@ -23,9 +23,9 @@ def change_speed(multiplier):
 
 # Classic bubble sort
 def bubble_sort(arr):
-    for i in range(n-1):
+    for i in range(current_size-1):
         swapped = False
-        for j in range(1, n-i):
+        for j in range(1, current_size-i):
             if arr[j-1] > arr[j]:
                 arr[j], arr[j-1] = arr[j-1], arr[j]
                 swapped = True
@@ -36,9 +36,9 @@ def bubble_sort(arr):
 
 # Classic selection sort
 def selection_sort(arr):
-    for i in range(n - 1):
+    for i in range(current_size - 1):
         min_index = i
-        for j in range(i, n):
+        for j in range(i, current_size):
             if arr[min_index] > arr[j]:
                 min_index = j
         arr[i], arr[min_index] = arr[min_index], arr[i]
@@ -48,19 +48,36 @@ def selection_sort(arr):
 # Resets the bars to a new array
 def bar_reset():
     global arr
-    arr = np.random.randint(1, 100, 50)
+    arr = np.random.randint(1, 100, current_size)
     update_bars(arr, bars)
+
+# Changes the amount of bars
+def change_size(num):
+    if 0 <= num < len(size_ranges):
+        global current_size, current_size_index, bars
+        current_size = size_ranges[num]
+        current_size_index = num 
+        for bar in bars:
+            bar.remove()
+        # Recreate the bar plot with the new size
+        arr = np.random.randint(1, 100, current_size)
+        bars = ax.bar(range(current_size), arr, align='center')
+        bar_reset()
 
 
 # Make table parameters
 fig, ax = plt.subplots()
-arr = np.random.randint(1, 100, 50)
-n = len(arr) 
+# Sizes of array available
+size_ranges = [10, 25, 50, 100]
+current_size = size_ranges[1]
+current_size_index = 1
+arr = np.random.randint(1, 100, current_size)
 pause_time = 0.01
-bars = ax.bar(range(n), arr, align='center')
+bars = ax.bar(range(current_size), arr, align='center')
 ax.axis("off")
 fig.patch.set_facecolor('lightgrey')
 ax.set_title("Sort Visualizer")
+
 
 # Add Button for Bubble Sort
 bubble_button_ax = plt.axes([0.01, 0.03, 0.16, 0.075])
@@ -82,9 +99,18 @@ slower_button = Button(slower_ax, "Slower")
 slower_button.on_clicked(lambda event: change_speed(2))
 
 # Reset button
-reset_ax = plt.axes([0.7, 0.9, 0.15, 0.075])
+reset_ax = plt.axes([0.01, 0.8, 0.15, 0.075])
 reset_button = Button(reset_ax, "reset")
 reset_button.on_clicked(lambda event: bar_reset())
+
+# Add Size Buttons
+bigger_ax = plt.axes([0.64, 0.9, 0.15, 0.075])
+bigger_button = Button(bigger_ax, "More Bars")
+bigger_button.on_clicked(lambda event: change_size(current_size_index + 1))
+
+smaller_ax = plt.axes([0.84, 0.9, 0.15, 0.075])
+smaller_button = Button(smaller_ax, "Less Bars")
+smaller_button.on_clicked(lambda event: change_size(current_size_index - 1))
 
 
 plt.show()
@@ -97,7 +123,9 @@ plt.show()
 
 
 
-# Add Size Buttons
+
+
+# Make colors change when being selected
 
 
 
