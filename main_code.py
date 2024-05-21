@@ -38,10 +38,9 @@ n = len(arr)
 bars = ax.bar(range(n), arr, align='center')
 ax.axis("off")
 fig.patch.set_facecolor('lightgrey')
-ax.set_title("Bubble Sort")
+ax.set_title("Sort")
 bubble_sort(arr)
-arr = np.random.randint(1, 100, 10)
-selection_sort(arr)
+
 
 
 
@@ -52,9 +51,11 @@ selection_sort(arr)
 
 # Add insertion sort
 
-# Add Button to pick which sort
+# Add Button to pick which sort and update title
 
 # Add Speed Buttons
 
 # Add Size Buttons
+
+
 
