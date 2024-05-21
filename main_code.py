@@ -1,12 +1,18 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.widgets import Button
 
+# This function updates the bars on the visual when the new values of the array
 def update_bars(arr, bars):
         for bar, val in zip(bars, arr):
             bar.set_height(val)
         fig.canvas.draw()
         plt.pause(0.01)
 
+def sort_button_click(func):
+    func(arr)
+
+# Classic bubble sort
 def bubble_sort(arr):
     for i in range(n-1):
         swapped = False
@@ -19,7 +25,7 @@ def bubble_sort(arr):
             break
     plt.show()
 
-# Add selection sort
+# Classic selection sort
 def selection_sort(arr):
     for i in range(n - 1):
         min_index = i
@@ -33,13 +39,21 @@ def selection_sort(arr):
 
 # Make table parameters
 fig, ax = plt.subplots()
-arr = np.random.randint(1, 100, 10)
+arr = np.random.randint(1, 100, 20)
 n = len(arr) 
 bars = ax.bar(range(n), arr, align='center')
 ax.axis("off")
 fig.patch.set_facecolor('lightgrey')
-ax.set_title("Sort")
-bubble_sort(arr)
+ax.set_title("Sort Visualizer")
+
+# Add Button to pick which sort and update title
+bubble_button_ax = plt.axes([0.7, 0.03, 0.15, 0.075])
+bubble_button = Button(bubble_button_ax, "Bubble Sort")
+bubble_button.on_clicked(sort_button_click(bubble_sort))
+
+
+
+
 
 
 
@@ -51,7 +65,7 @@ bubble_sort(arr)
 
 # Add insertion sort
 
-# Add Button to pick which sort and update title
+
 
 # Add Speed Buttons
 
