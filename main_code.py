@@ -45,6 +45,12 @@ def selection_sort(arr):
         update_bars(arr, bars)
     plt.show()
 
+# Resets the bars to a new array
+def bar_reset():
+    global arr
+    arr = np.random.randint(1, 100, 50)
+    update_bars(arr, bars)
+
 
 # Make table parameters
 fig, ax = plt.subplots()
@@ -57,12 +63,12 @@ fig.patch.set_facecolor('lightgrey')
 ax.set_title("Sort Visualizer")
 
 # Add Button for Bubble Sort
-bubble_button_ax = plt.axes([0.01, 0.03, 0.15, 0.075])
+bubble_button_ax = plt.axes([0.01, 0.03, 0.16, 0.075])
 bubble_button = Button(bubble_button_ax, "Bubble Sort")
 bubble_button.on_clicked(lambda event: sort_button_click(bubble_sort))
 
 # Add Button for Selection Sort
-selection_button_ax = plt.axes([0.2, 0.03, 0.15, 0.075])
+selection_button_ax = plt.axes([0.2, 0.03, 0.16, 0.075])
 selection_button = Button(selection_button_ax, "Selection Sort")
 selection_button.on_clicked(lambda event: sort_button_click(selection_sort))
 
@@ -74,6 +80,11 @@ faster_button.on_clicked(lambda event: change_speed(0.5))
 slower_ax = plt.axes([0.01, 0.9, 0.15, 0.075])
 slower_button = Button(slower_ax, "Slower")
 slower_button.on_clicked(lambda event: change_speed(2))
+
+# Reset button
+reset_ax = plt.axes([0.7, 0.9, 0.15, 0.075])
+reset_button = Button(reset_ax, "reset")
+reset_button.on_clicked(lambda event: bar_reset())
 
 
 plt.show()
