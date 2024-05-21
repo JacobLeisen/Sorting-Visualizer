@@ -67,7 +67,7 @@ def change_size(num):
         # Recreate the bar plot with the new size
         arr = np.random.randint(1, 100, current_size)
         bars = ax.bar(range(current_size), arr, align='center', width=bar_width)
-        ax.set_xlim(-0.5, total_width - 0.5)  # Adjust the x-axis limits to fit all bars
+        ax.set_xlim(-0.5, total_width + 5.5)  # Adjust the x-axis limits to fit all bars
 
         bar_reset()
 
