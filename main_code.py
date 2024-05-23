@@ -2,15 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Button
 
-# This function updates the bars on the visual when the new values of the array
+# This function updates the bars on the visual with the new values of the array
 def update_bars(arr, bars, highlighted=None):
         for i, (bar, val) in enumerate(zip(bars, arr)):
             bar.set_height(val)
+            # Highlight the two previously changed bars red
             if highlighted and i in highlighted:
                 bar.set_color('red')
             else:
                 bar.set_color('blue')
-
         fig.canvas.draw()
         global pause_time
         plt.pause(pause_time)
@@ -23,7 +23,6 @@ def sort_button_click(func):
 def change_speed(multiplier):
     global pause_time 
     pause_time *= multiplier # Make sure changes global variable
-
 
 
 # Classic bubble sort
@@ -43,7 +42,6 @@ def bubble_sort(arr):
 
 # Classic selection sort
 def selection_sort(arr):
-    
     for i in range(current_size - 1):
         min_index = i
         swapped_indices = []
@@ -133,12 +131,5 @@ smaller_button.on_clicked(lambda event: change_size(current_size_index - 1))
 plt.show()
 
 
-
 # Add insertion sort
-
-
-
-# Make colors change when being selected
-
-
 
