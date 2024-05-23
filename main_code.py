@@ -3,9 +3,14 @@ import numpy as np
 from matplotlib.widgets import Button
 
 # This function updates the bars on the visual when the new values of the array
-def update_bars(arr, bars):
-        for bar, val in zip(bars, arr):
+def update_bars(arr, bars, highlighted=None):
+        for i, (bar, val) in enumerate(zip(bars, arr)):
             bar.set_height(val)
+            if highlighted and i in highlighted:
+                bar.set_color('red')
+            else:
+                bar.set_color('blue')
+
         fig.canvas.draw()
         global pause_time
         plt.pause(pause_time)
@@ -26,23 +31,28 @@ def bubble_sort(arr):
     for i in range(current_size-1):
         swapped = False
         for j in range(1, current_size-i):
+            swapped_indices = []
             if arr[j-1] > arr[j]:
                 arr[j], arr[j-1] = arr[j-1], arr[j]
                 swapped = True
-                update_bars(arr, bars)
+                swapped_indices.extend([j, j-1])
+                update_bars(arr, bars, swapped_indices)
         if not swapped:
             break
     plt.show()
 
 # Classic selection sort
 def selection_sort(arr):
+    
     for i in range(current_size - 1):
         min_index = i
+        swapped_indices = []
         for j in range(i, current_size):
             if arr[min_index] > arr[j]:
                 min_index = j
         arr[i], arr[min_index] = arr[min_index], arr[i]
-        update_bars(arr, bars)
+        swapped_indices.extend([i, min_index])
+        update_bars(arr, bars, swapped_indices)
     plt.show()
 
 # Resets the bars to a new array
