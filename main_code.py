@@ -26,7 +26,7 @@ def change_speed(multiplier):
 
 
 # Classic bubble sort
-def bubble_sort(arr):
+def bubble_sort(arr) -> None:
     for i in range(current_size-1):
         swapped = False
         for j in range(1, current_size-i):
@@ -41,7 +41,7 @@ def bubble_sort(arr):
     plt.show()
 
 # Classic selection sort
-def selection_sort(arr):
+def selection_sort(arr) -> None:
     for i in range(current_size - 1):
         min_index = i
         swapped_indices = []
@@ -52,6 +52,21 @@ def selection_sort(arr):
         swapped_indices.extend([i, min_index])
         update_bars(arr, bars, swapped_indices)
     plt.show()
+
+# Insertion Sort Function
+def insertion_sort(arr) -> None:
+    for i in range(1, current_size):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            swapped_indices = []
+            arr[j+1] = arr[j]
+            swapped_indices.extend([j, j+1])
+            update_bars(arr, bars, swapped_indices)
+            j -= 1
+        arr[j+1] = key
+        update_bars(arr, bars)
+    
 
 # Resets the bars to a new array
 def bar_reset():
@@ -104,6 +119,11 @@ selection_button_ax = plt.axes([0.2, 0.03, 0.16, 0.075])
 selection_button = Button(selection_button_ax, "Selection Sort")
 selection_button.on_clicked(lambda event: sort_button_click(selection_sort))
 
+# Add Button for Insertion Sort
+insertion_button_ax = plt.axes([0.4, 0.03, 0.16, 0.075])
+insertion_button = Button(insertion_button_ax, "Insertion Sort")
+insertion_button.on_clicked(lambda event: sort_button_click(insertion_sort))
+
 # Add Speed Buttons
 faster_ax = plt.axes([0.2, 0.9, 0.15, 0.075])
 faster_button = Button(faster_ax, "Faster")
@@ -131,5 +151,5 @@ smaller_button.on_clicked(lambda event: change_size(current_size_index - 1))
 plt.show()
 
 
-# Add insertion sort
+
 
